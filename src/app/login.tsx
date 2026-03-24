@@ -1,13 +1,11 @@
-import { Image } from 'expo-image';
-import { Redirect } from 'expo-router';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Redirect } from "expo-router";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 
-import { Button } from '@/components/button';
-import { Screen } from '@/components/screen';
-import { AppAssets } from '@/constants/assets';
-import { theme } from '@/constants/theme';
-import { LoginForm } from '@/features/auth/components/login-form';
-import { useAuthStore } from '@/store/auth-store';
+import { Button } from "@/components/button";
+import { Screen } from "@/components/screen";
+import { theme } from "@/constants/theme";
+import { LoginForm } from "@/features/auth/components/login-form";
+import { useAuthStore } from "@/store/auth-store";
 
 export default function LoginScreen() {
   const { width } = useWindowDimensions();
@@ -16,11 +14,11 @@ export default function LoginScreen() {
   const session = useAuthStore((state) => state.session);
   const signOut = useAuthStore((state) => state.signOut);
 
-  if (session && profile?.role === 'admin') {
+  if (session && profile?.role === "admin") {
     return <Redirect href="/(admin)" />;
   }
 
-  const isBlocked = Boolean(session && profile?.role !== 'admin');
+  const isBlocked = Boolean(session && profile?.role !== "admin");
 
   return (
     <Screen
@@ -28,25 +26,34 @@ export default function LoginScreen() {
         styles.content,
         isCompact ? styles.contentCompact : null,
       ]}
-      scroll={isCompact}>
-      <View style={[styles.brandColumn, isCompact ? styles.brandColumnCompact : null]}>
-        <Image
-          contentFit="contain"
-          source={AppAssets.logo}
-          style={[styles.logo, isCompact ? styles.logoCompact : null]}
-        />
-        <Text style={[styles.title, isCompact ? styles.titleCompact : null]}>Painel Admin</Text>
-        <Text style={[styles.subtitle, isCompact ? styles.subtitleCompact : null]}>
-          PDV, estoque e cardapio digital em uma experiencia enxuta para operacao diaria.
+      scroll={isCompact}
+    >
+      <View
+        style={[
+          styles.brandColumn,
+          isCompact ? styles.brandColumnCompact : null,
+        ]}
+      >
+        <Text style={[styles.title, isCompact ? styles.titleCompact : null]}>
+          Painel Admin
+        </Text>
+        <Text
+          style={[styles.subtitle, isCompact ? styles.subtitleCompact : null]}
+        >
+          PDV, estoque e cardapio digital em uma experiencia enxuta para
+          operacao diaria.
         </Text>
       </View>
 
-      <View style={[styles.formColumn, isCompact ? styles.formColumnCompact : null]}>
+      <View
+        style={[styles.formColumn, isCompact ? styles.formColumnCompact : null]}
+      >
         {isBlocked ? (
           <View style={styles.blockedCard}>
             <Text style={styles.blockedTitle}>Acesso restrito</Text>
             <Text style={styles.blockedText}>
-              Este usuario existe, mas ainda nao possui permissao de administrador no Supabase.
+              Este usuario existe, mas ainda nao possui permissao de
+              administrador no Supabase.
             </Text>
             <Button onPress={() => void signOut()} variant="secondary">
               Sair desta conta
@@ -62,13 +69,13 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   blockedCard: {
-    backgroundColor: 'rgba(17, 17, 17, 0.9)',
+    backgroundColor: "rgba(17, 17, 17, 0.9)",
     borderColor: theme.colors.border,
     borderRadius: theme.radius.lg,
     borderWidth: 1,
     gap: theme.spacing.md,
     padding: theme.spacing.xl,
-    width: '100%',
+    width: "100%",
   },
   blockedText: {
     color: theme.colors.textMuted,
@@ -83,37 +90,37 @@ const styles = StyleSheet.create({
   },
   brandColumn: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     maxWidth: 440,
   },
   brandColumnCompact: {
     flex: 0,
     marginBottom: theme.spacing.md,
-    maxWidth: '100%',
-    width: '100%',
+    maxWidth: "100%",
+    width: "100%",
   },
   content: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: theme.spacing.xl,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   contentCompact: {
-    alignItems: 'stretch',
+    alignItems: "stretch",
     flexGrow: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
     paddingBottom: theme.spacing.xl,
   },
   formColumn: {
     flex: 1,
     maxWidth: 460,
-    width: '100%',
+    width: "100%",
   },
   formColumnCompact: {
     flex: 0,
-    maxWidth: '100%',
+    maxWidth: "100%",
   },
   logo: {
     height: 140,
@@ -135,7 +142,7 @@ const styles = StyleSheet.create({
   subtitleCompact: {
     fontSize: 14,
     lineHeight: 22,
-    maxWidth: '100%',
+    maxWidth: "100%",
   },
   title: {
     color: theme.colors.text,

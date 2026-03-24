@@ -5,11 +5,13 @@ import {
   useFonts,
 } from "@expo-google-fonts/sora";
 import { QueryClientProvider } from "@tanstack/react-query";
+import * as NavigationBar from "expo-navigation-bar";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import * as SystemUI from "expo-system-ui";
 import { useEffect, useState } from "react";
+import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -35,6 +37,10 @@ export default function RootLayout() {
     let unsubscribe: () => void = () => {};
 
     void (async () => {
+      if (Platform.OS === "android") {
+        await NavigationBar.setVisibilityAsync("hidden");
+      }
+
       unsubscribe = await useAuthStore.getState().bootstrap();
       setAuthBootstrapped(true);
     })();
@@ -63,7 +69,7 @@ export default function RootLayout() {
             <Stack.Screen name="login" />
             <Stack.Screen name="(admin)" />
           </Stack>
-          <StatusBar style="light" />
+          <StatusBar hidden={Platform.OS === "android"} style="light" />
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

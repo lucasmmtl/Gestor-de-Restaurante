@@ -1,5 +1,5 @@
 export const AppAssets = {
-  background: require("../../assets/icon.jpg"),
-  logo: require("../../assets/icon.jpg"),
-  wordmark: require("../../assets/icon.jpg"),
+  background: require("../../assets/icon2.png"),
+  logo: require("../../assets/icon2.png"),
+  wordmark: require("../../assets/icon2.png"),
 } as const;
