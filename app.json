@@ -4,7 +4,7 @@
     "slug": "gestor-restaurante",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon2.png",
     "scheme": "gestorrestaurante",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
@@ -14,16 +14,22 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#000000",
-        "foregroundImage": "./assets/icon.png"
+        "foregroundImage": "./assets/icon2.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "permissions": ["android.permission.RECORD_AUDIO"],
       "package": "com.lucasmmtl.gestorrestaurante"
     },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
+    },
+    "androidStatusBar": {
+      "hidden": true
+    },
     "web": {
       "output": "static",
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/icon2.png"
     },
     "plugins": [
       "expo-router",
@@ -36,7 +42,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/icon.png",
+          "image": "./assets/icon2.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000",
